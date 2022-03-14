@@ -63,7 +63,6 @@ def main():
     if opt != '1':
       b = 1
     
-
   for i in range(len(arr)):
     separador()
     print('Producto '+str(i+1)+' - '+arr[i].getProducts())
@@ -76,11 +75,18 @@ def main():
   print('Factura:')
   print('\nCliente: '+cliente.getData('nombre')+'\nNIF: '+cliente.getData('nif')+'\nDirección: '+cliente.getData('direccion')+'\nPoblacion: '+cliente.getData('cposal')+'\nPoblacion: '+cliente.getData('poblacion'))
   print('\nN  Quantitat Denominació Preu  Total€')
+
+  pt = 0
   for i in range(len(arr)):
     q = int(arr[i].getData('cantidad'))
     p = int(arr[i].getData('preioUnidad'))
     d = int(arr[i].getData('descuento'))
     total = (q*p)-((q*p)*(d/100))
+    pt += total
     print(str((i+1))+' '+arr[i].getData('cantidad')+' '+arr[i].getData('denominación')+' '+arr[i].getData('preioUnidad')+' '+arr[i].getData('descuento')+'% '+str(total)+'€')
+  separador()
+  print('BASE IMPOSABLE: '+str(pt))
+  print('IVA: '+str(pt*(int(iva)/100)))
+  print('TOTAL:'+str((pt-(pt*(int(iva)/100)))))
 
 main()
