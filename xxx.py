@@ -1,3 +1,5 @@
+from datetime import date
+
 def separador():
   print('*----------------------------------*')
 
@@ -48,7 +50,8 @@ class Producto:
     return 'error, faltan parametros'
 
 factura = input('Número de factura: ')
-def main(factura):
+def main(factura,empresa,ciudad):
+  print('Cliente: ')
   cliente = Cliente(input('Nombre: '),input('NIF: '),input('Dirección: '),input('Código postal: '),input('Población: '))
 
   arr = []
@@ -85,13 +88,17 @@ def main(factura):
     pt += total
     print(str((i+1))+' '+arr[i].getData('cantidad')+' '+arr[i].getData('denominación')+' '+arr[i].getData('preioUnidad')+' '+arr[i].getData('descuento')+'% '+str(total)+'€')
   separador()
+  today = date.today()
+  print('EMPRESA: '+empresa+', Ciudad: '+ciudad+', Fecha:'+today.strftime("%m/%d/%y"))
   print('Num factura:'+str(factura))
   print('BASE IMPOSABLE: '+str(pt))
   print('IVA: '+str(pt*(int(iva)/100)))
   print('TOTAL:'+str((pt+(pt*(int(iva)/100)))))
   separador()
   if input('1 = Volver a introducir una factura, 2 = Salir: ') == '1':
-    
-    main(int(factura)+1)
+    main(int(factura)+1,empresa,ciudad)
 
-main(factura)
+
+
+
+main(factura,input('Nombre empresa: '),input('Ciudad: '))
