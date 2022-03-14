@@ -9,8 +9,18 @@ class Cliente:
     self.cpostal = cpostal
     self.poblacion = poblacion
   
-  def getData(self):
-    return self.nombre+' '+self.nif+' '+self.direccion+' '+self.cpostal+' '+self.poblacion
+  def getData(self,e):
+    if(e == 'nombre'):
+     return self.nombre
+    if(e == 'nif'):
+      return self.nif
+    if(e == 'direccion'):
+      return self.direccion
+    if(e == 'cposal'):
+      return self.cpostal
+    if(e == 'poblacion'):
+      return self.poblacion
+    return 'error, faltan parametros'
 
 
 class Producto:
@@ -26,8 +36,16 @@ class Producto:
   def setDescuento(self,e):
     self.descuento = e
 
-  def getDescuento(self):
-    return self.descuento
+  def getData(self,e):
+    if(e == 'cantidad'):
+     return self.cantidad
+    if(e == 'denominación'):
+      return self.denominacion
+    if(e == 'preioUnidad'):
+      return self.preioUnidad
+    if(e == 'descuento'):
+      return self.descuento
+    return 'error, faltan parametros'
 
 def main():
   factura = input('Número de factura: ')
@@ -50,8 +68,19 @@ def main():
     separador()
     print('Producto '+str(i+1)+' - '+arr[i].getProducts())
     arr[i].setDescuento(input('Descuento: '))
-    separador()
 
-  iva = input('IVA: ')
+    separador()
+    iva = input('IVA: ')
+
+  separador()
+  print('Factura:')
+  print('\nCliente: '+cliente.getData('nombre')+'\nNIF: '+cliente.getData('nif')+'\nDirección: '+cliente.getData('direccion')+'\nPoblacion: '+cliente.getData('cposal')+'\nPoblacion: '+cliente.getData('poblacion'))
+  print('\nN  Quantitat Denominació Preu  Total€')
+  for i in range(len(arr)):
+    q = int(arr[i].getData('cantidad'))
+    p = int(arr[i].getData('preioUnidad'))
+    d = int(arr[i].getData('descuento'))
+    total = (q*p)-((q*p)*(d/100))
+    print(str((i+1))+' '+arr[i].getData('cantidad')+' '+arr[i].getData('denominación')+' '+arr[i].getData('preioUnidad')+' '+arr[i].getData('descuento')+'% '+str(total)+'€')
 
 main()
