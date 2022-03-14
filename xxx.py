@@ -88,5 +88,8 @@ def main():
   print('BASE IMPOSABLE: '+str(pt))
   print('IVA: '+str(pt*(int(iva)/100)))
   print('TOTAL:'+str((pt-(pt*(int(iva)/100)))))
+  separador()
+  if input('1 = Volver a introducir una factura, 2 = Salir: ') == '1':
+    main()
 
 main()
