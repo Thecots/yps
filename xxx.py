@@ -69,8 +69,8 @@ def main():
     print('Producto '+str(i+1)+' - '+arr[i].getProducts())
     arr[i].setDescuento(input('Descuento: '))
 
-    separador()
-    iva = input('IVA: ')
+  separador()
+  iva = input('IVA: ')
 
   separador()
   print('Factura:')
