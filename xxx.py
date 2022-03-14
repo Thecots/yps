@@ -47,8 +47,8 @@ class Producto:
       return self.descuento
     return 'error, faltan parametros'
 
-def main():
-  factura = input('Número de factura: ')
+factura = input('Número de factura: ')
+def main(factura):
   cliente = Cliente(input('Nombre: '),input('NIF: '),input('Dirección: '),input('Código postal: '),input('Población: '))
 
   arr = []
@@ -85,11 +85,13 @@ def main():
     pt += total
     print(str((i+1))+' '+arr[i].getData('cantidad')+' '+arr[i].getData('denominación')+' '+arr[i].getData('preioUnidad')+' '+arr[i].getData('descuento')+'% '+str(total)+'€')
   separador()
+  print('Num factura:'+str(factura))
   print('BASE IMPOSABLE: '+str(pt))
   print('IVA: '+str(pt*(int(iva)/100)))
   print('TOTAL:'+str((pt+(pt*(int(iva)/100)))))
   separador()
   if input('1 = Volver a introducir una factura, 2 = Salir: ') == '1':
-    main()
+    
+    main(int(factura)+1)
 
-main()
+main(factura)
